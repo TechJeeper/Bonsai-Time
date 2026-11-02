@@ -1,0 +1,61 @@
+{
+  "name": "bonsai-time",
+  "author": "caffeinegamer",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app",
+    "watchface",
+    "steps",
+    "health",
+    "bonsai"
+  ],
+  "private": true,
+  "dependencies": {
+    "@rebble/clay": "^1.1.0"
+  },
+  "pebble": {
+    "displayName": "Bonsai Time",
+    "uuid": "7bfa58f1-7262-4c4f-9ce1-df7ed5df747d",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery",
+      "basalt",
+      "diorite",
+      "flint"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "capabilities": [
+      "configurable",
+      "health"
+    ],
+    "messageKeys": [
+      "TimeFormat",
+      "LeadingZero",
+      "ShowDate",
+      "ShowSteps",
+      "ShowStageLabel",
+      "DemoMode",
+      "StepGoal",
+      "BgStyle"
+    ],
+    "resources": {
+      "media": [
+        {
+          "type": "bitmap",
+          "name": "IMAGE_MENU_ICON",
+          "file": "images/menu_icon.png",
+          "menuIcon": true
+        },
+        { "type": "bitmap", "name": "IMAGE_BONSAI_BARE", "file": "images/bonsai/bare.png" },
+        { "type": "bitmap", "name": "IMAGE_BONSAI_BUDS", "file": "images/bonsai/buds.png" },
+        { "type": "bitmap", "name": "IMAGE_BONSAI_SPARSE", "file": "images/bonsai/sparse.png" },
+        { "type": "bitmap", "name": "IMAGE_BONSAI_LEAFY", "file": "images/bonsai/leafy.png" },
+        { "type": "bitmap", "name": "IMAGE_BONSAI_LUSH", "file": "images/bonsai/lush.png" },
+        { "type": "bitmap", "name": "IMAGE_BONSAI_BLOSSOM", "file": "images/bonsai/blossom.png" }
+      ]
+    }
+  }
+}
