@@ -157,18 +157,19 @@ def render(w: int, h: int, color: bool, scene: dict) -> Image.Image:
         y_after_time = 40 if w >= 200 else 32
         draw_text_center(draw, "Sun 2 Nov", y_after_time, w, font(max(11, w // 13)), fg)
 
-    sprite_size = 72 if w >= 200 else 56
-    sprite = load_sprite(scene["sprite"], color, sprite_size)
-    sprite_x = (w - sprite_size) // 2
     time_bottom = 64 if scene.get("show_date") else 48
     caption_h = 42
     band_top = time_bottom
     band_bot = h - caption_h
-    sprite_y = band_top + (band_bot - band_top - sprite_size) // 2
-    if sprite_y < band_top:
-        sprite_y = band_top
-    if sprite_y + sprite_size > band_bot:
-        sprite_y = band_bot - sprite_size
+    band_h = band_bot - band_top
+    sprite_size = band_h - 4
+    if sprite_size > w - 8:
+        sprite_size = w - 8
+    if sprite_size < 48:
+        sprite_size = 48
+    sprite = load_sprite(scene["sprite"], color, sprite_size)
+    sprite_x = (w - sprite_size) // 2
+    sprite_y = band_top + (band_h - sprite_size) // 2
     img.paste(sprite, (sprite_x, sprite_y), sprite)
 
     label_y = h - (48 if w >= 200 else 40)

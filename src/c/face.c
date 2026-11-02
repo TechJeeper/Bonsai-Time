@@ -82,24 +82,25 @@ static void update_proc(Layer *layer, GContext *ctx) {
 
   GBitmap *sprite = s_stages[tree->stage];
   if (sprite) {
-    GSize sz = gbitmap_get_bounds(sprite).size;
     // Gentle sway when the tree has any foliage.
     int sway = 0;
     if (tree->stage > STAGE_BARE) {
       sway = ((s_pulse % 8) < 4) ? 1 : 0;
     }
 
+    // Scale the bonsai to nearly fill the band between time and captions.
     const int band_top = time_bottom;
     const int band_bot = bounds.size.h - caption_h;
-    int tree_y = band_top + (band_bot - band_top - sz.h) / 2;
-    if (tree_y < band_top) {
-      tree_y = band_top;
+    const int band_h = band_bot - band_top;
+    int draw = band_h - 4;
+    if (draw > bounds.size.w - 8) {
+      draw = bounds.size.w - 8;
     }
-    if (tree_y + sz.h > band_bot) {
-      tree_y = band_bot - sz.h;
+    if (draw < 48) {
+      draw = 48;
     }
-
-    GRect dest = GRect((bounds.size.w - sz.w) / 2 + sway, tree_y, sz.w, sz.h);
+    int tree_y = band_top + (band_h - draw) / 2;
+    GRect dest = GRect((bounds.size.w - draw) / 2 + sway, tree_y, draw, draw);
 #if defined(PBL_COLOR)
     graphics_context_set_compositing_mode(ctx, GCompOpSet);
 #else
