@@ -55,7 +55,7 @@ Listing copy and screenshot notes: [`STORE.md`](STORE.md).
 python tools/generate_store_screenshots.py
 ```
 
-Output: `store/screenshots/{basalt,diorite,flint,emery}/` at exact Rebble sizes.
+Output: `store/screenshots/{basalt,emery}/` at exact Rebble sizes.
 
 ## Layout
 

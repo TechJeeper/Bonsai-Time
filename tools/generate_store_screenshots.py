@@ -18,8 +18,6 @@ BONSAI = ROOT / "resources" / "images" / "bonsai"
 # Exact display sizes (Rebble store). color flag matches PBL_COLOR.
 PLATFORMS = {
     "basalt": (144, 168, True),
-    "diorite": (144, 168, False),
-    "flint": (144, 168, False),
     "emery": (200, 228, True),
 }
 

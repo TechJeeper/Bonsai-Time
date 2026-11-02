@@ -26,7 +26,7 @@ A living pixel bonsai on your wrist. Walk, watch leaves appear, hit your goal to
 • Demo mode for watches without step data
 • Clay phone settings
 
-Best on step-capable Pebbles. Color faces get warm garden hues; B&W keeps the silhouette on black.
+Color platforms only (Pebble Time / Time 2). Best on step-capable watches.
 ```
 
 ## Short blurb (optional)
@@ -52,8 +52,6 @@ python tools/generate_store_screenshots.py
 | Platform | Size | Folder |
 | --- | --- | --- |
 | basalt (Pebble Time) | 144×168 | `store/screenshots/basalt/` |
-| diorite (Pebble 2) | 144×168 | `store/screenshots/diorite/` |
-| flint (Pebble 2 Duo) | 144×168 | `store/screenshots/flint/` |
 | emery (Pebble Time 2) | 200×228 | `store/screenshots/emery/` |
 
 Five shots per platform:

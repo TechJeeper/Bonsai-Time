@@ -99,13 +99,7 @@ static void update_proc(Layer *layer, GContext *ctx) {
       tree_y = band_top;
     }
     GRect dest = GRect((bounds.size.w - sz.w) / 2 + sway, tree_y, sz.w, sz.h);
-#if defined(PBL_COLOR)
     graphics_context_set_compositing_mode(ctx, GCompOpSet);
-#else
-    // Dark pixel-art becomes black-on-black with Assign; Clear paints a
-    // white silhouette where the bitmap is set so B&W faces stay readable.
-    graphics_context_set_compositing_mode(ctx, GCompOpClear);
-#endif
     graphics_draw_bitmap_in_rect(ctx, sprite, dest);
   }
 

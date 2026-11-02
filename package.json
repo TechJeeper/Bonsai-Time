@@ -20,9 +20,7 @@
     "enableMultiJS": true,
     "targetPlatforms": [
       "emery",
-      "basalt",
-      "diorite",
-      "flint"
+      "basalt"
     ],
     "watchapp": {
       "watchface": true
