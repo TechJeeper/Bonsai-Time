@@ -82,29 +82,29 @@ static void update_proc(Layer *layer, GContext *ctx) {
 
   GBitmap *sprite = s_stages[tree->stage];
   if (sprite) {
+    GSize sz = gbitmap_get_bounds(sprite).size;
     // Gentle sway when the tree has any foliage.
     int sway = 0;
     if (tree->stage > STAGE_BARE) {
       sway = ((s_pulse % 8) < 4) ? 1 : 0;
     }
 
-    // Scale the bonsai to nearly fill the band between time and captions.
+    // Draw at native bitmap size only — dest larger than the bitmap tiles
+    // on Pebble (no upscaling). Center in the band between time and captions.
     const int band_top = time_bottom;
     const int band_bot = bounds.size.h - caption_h;
     const int band_h = band_bot - band_top;
-    int draw = band_h - 4;
-    if (draw > bounds.size.w - 8) {
-      draw = bounds.size.w - 8;
+    int tree_y = band_top + (band_h - sz.h) / 2;
+    if (tree_y < band_top) {
+      tree_y = band_top;
     }
-    if (draw < 48) {
-      draw = 48;
-    }
-    int tree_y = band_top + (band_h - draw) / 2;
-    GRect dest = GRect((bounds.size.w - draw) / 2 + sway, tree_y, draw, draw);
+    GRect dest = GRect((bounds.size.w - sz.w) / 2 + sway, tree_y, sz.w, sz.h);
 #if defined(PBL_COLOR)
     graphics_context_set_compositing_mode(ctx, GCompOpSet);
 #else
-    graphics_context_set_compositing_mode(ctx, GCompOpAssign);
+    // Dark pixel-art becomes black-on-black with Assign; Clear paints a
+    // white silhouette where the bitmap is set so B&W faces stay readable.
+    graphics_context_set_compositing_mode(ctx, GCompOpClear);
 #endif
     graphics_draw_bitmap_in_rect(ctx, sprite, dest);
   }

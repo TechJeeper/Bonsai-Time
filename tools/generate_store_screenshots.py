@@ -162,14 +162,13 @@ def render(w: int, h: int, color: bool, scene: dict) -> Image.Image:
     band_top = time_bottom
     band_bot = h - caption_h
     band_h = band_bot - band_top
-    sprite_size = band_h - 4
-    if sprite_size > w - 8:
-        sprite_size = w - 8
-    if sprite_size < 48:
-        sprite_size = 48
+    # Match watchface: native ~80px sprite, centered (Pebble cannot upscale).
+    sprite_size = 80
     sprite = load_sprite(scene["sprite"], color, sprite_size)
     sprite_x = (w - sprite_size) // 2
     sprite_y = band_top + (band_h - sprite_size) // 2
+    if sprite_y < band_top:
+        sprite_y = band_top
     img.paste(sprite, (sprite_x, sprite_y), sprite)
 
     label_y = h - (48 if w >= 200 else 40)
